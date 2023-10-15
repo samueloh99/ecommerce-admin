@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
+
 import * as z from "zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStoreModal } from "@/hooks/useStoreModal";
@@ -21,6 +24,7 @@ const formSchema = z.object({
 });
 
 export function StoreModal() {
+  const [isLoading, setIsLoading] = useState(false);
   const storeModal = useStoreModal();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,6 +35,16 @@ export function StoreModal() {
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     console.log(value);
+    try {
+      setIsLoading(true);
+      const response = await axios.post("/api/stores", { value });
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <Modal
@@ -50,17 +64,27 @@ export function StoreModal() {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="E-Commerce" {...field} />
+                      <Input
+                        disabled={isLoading}
+                        placeholder="E-Commerce"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <div className="w-full pt-6 space-x-2 flex items-center justify-end">
-                <Button variant="outline" onClick={storeModal.onClose}>
+                <Button
+                  disabled={isLoading}
+                  variant="outline"
+                  onClick={storeModal.onClose}
+                >
                   Cancel
                 </Button>
-                <Button type="submit">Continue</Button>
+                <Button disabled={isLoading} type="submit">
+                  Continue
+                </Button>
               </div>
             </form>
           </Form>
