@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -9,12 +9,13 @@ export function MainNav({
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathName = usePathname();
+  const params = useParams();
 
   const routes = [
     {
-      href: "/settings",
+      href: `/${params.storeId}/settings`,
       label: "Settings",
-      active: pathName === `/settings`,
+      active: pathName === `/${params.storeId}/settings`,
     },
   ];
 
