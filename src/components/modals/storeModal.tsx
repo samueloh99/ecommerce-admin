@@ -35,15 +35,11 @@ export function StoreModal() {
   });
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
-    console.log(value);
     try {
       setIsLoading(true);
-      const response = await axios.post("/api/stores", { value });
-
-      console.log(response.data);
-      toast.success("Store created.");
+      const response = await axios.post("/api/stores", value);
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong.");
     } finally {
       setIsLoading(false);

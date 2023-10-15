@@ -14,11 +14,5 @@ export default function SetupPage() {
     }
   }, [isOpen, onOpen]);
 
-  return (
-    <div className="p-4">
-      <Modal title="Test" description="TEst" isOpen onClose={() => {}}>
-        Children
-      </Modal>
-    </div>
-  );
+  return null;
 }
