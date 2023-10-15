@@ -1,9 +1,39 @@
-import { Headings } from "@/components/headings";
+import { auth } from "@clerk/nextjs";
 
-export default function SettingsPage() {
+import { redirect } from "next/navigation";
+
+import prismadb from "@/lib/prismadb";
+
+import { SettingsForm } from "@/components/settingsForm";
+
+interface SettingsPageProps {
+  params: {
+    storeId: string;
+  };
+}
+
+export default async function SettingsPage({ params }: SettingsPageProps) {
+  const { userId } = auth();
+
+  if (!userId) {
+    redirect("/sign-in");
+  }
+
+  const store = await prismadb.store.findFirst({
+    where: {
+      userId,
+    },
+  });
+
+  if (!store) {
+    redirect("/");
+  }
+
   return (
-    <div className="flex-1 space-y-4 p-8 pt-6 border border-black">
-      <Headings description="Manage store preferences" title="Settings" />
+    <div className="flex-col">
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <SettingsForm initialData={store} />
+      </div>
     </div>
   );
 }
