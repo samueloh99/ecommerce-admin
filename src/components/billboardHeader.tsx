@@ -9,10 +9,10 @@ import { Headings } from "@/components/headings";
 import { Separator } from "@/components/ui/separator";
 import { ApiList } from "@/components/apiList";
 
-import { columns, BillboardColumn } from "./columns";
+import { BillboardColumnType, BillboardColumns } from "./billboardColumns";
 
 interface BillboardHeaderProps {
-  data: BillboardColumn[];
+  data: BillboardColumnType[];
 }
 
 export function BillboardHeader({ data }: BillboardHeaderProps) {
@@ -33,7 +33,7 @@ export function BillboardHeader({ data }: BillboardHeaderProps) {
         </Button>
       </div>
       <Separator />
-      <DataTable searchKey="label" columns={columns} data={data} />
+      <DataTable searchKey="label" columns={BillboardColumns} data={data} />
       <Headings title="API" description="API Calls for Billboards" />
       <Separator />
       <ApiList entityName="billboards" entityIdName="billboardId" />

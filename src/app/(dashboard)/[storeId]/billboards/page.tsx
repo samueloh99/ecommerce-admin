@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import prismadb from "@/lib/prismadb";
 
 import { BillboardHeader } from "@/components/billboardHeader";
-import { BillboardColumn } from "@/components/columns";
+import { BillboardColumnType } from "@/components/billboardColumns";
 
 export default async function BillboardsPage({
   params,
@@ -19,7 +19,7 @@ export default async function BillboardsPage({
     },
   });
 
-  const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
+  const formattedBillboards: BillboardColumnType[] = billboards.map((item) => ({
     id: item.id,
     label: item.label,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),

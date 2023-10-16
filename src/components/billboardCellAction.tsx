@@ -16,13 +16,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { AlertModal } from "@/components/modals/alertModal";
 
-import { BillboardColumn } from "./columns";
+import { BillboardColumnType } from "./billboardColumns";
 
-interface CellActionProps {
-  data: BillboardColumn;
+interface BillboardCellActionProps {
+  data: BillboardColumnType;
 }
 
-export const CellAction: React.FC<CellActionProps> = ({ data }) => {
+export const BillboardCellAction: React.FC<BillboardCellActionProps> = ({
+  data,
+}) => {
   const router = useRouter();
   const params = useParams();
   const [open, setOpen] = useState(false);

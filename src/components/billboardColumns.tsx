@@ -2,15 +2,15 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { CellAction } from "@/components/cellAction";
+import { BillboardCellAction } from "@/components/billboardCellAction";
 
-export type BillboardColumn = {
+export type BillboardColumnType = {
   id: string;
   label: string;
   createdAt: string;
 };
 
-export const columns: ColumnDef<BillboardColumn>[] = [
+export const BillboardColumns: ColumnDef<BillboardColumnType>[] = [
   {
     accessorKey: "label",
     header: "Label",
@@ -21,6 +21,6 @@ export const columns: ColumnDef<BillboardColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <CellAction data={row.original} />,
+    cell: ({ row }) => <BillboardCellAction data={row.original} />,
   },
 ];
