@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import prismadb from "@/lib/prismadb";
 
 import { CategoryColumnType } from "@/components/categoryColumns";
-import { CategoriesHeader } from "@/components/categoryHeader";
+import { CategoryHeader } from "@/components/categoryHeader";
 
 const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
   const categories = await prismadb.category.findMany({
@@ -28,7 +28,7 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <CategoriesHeader data={formattedCategories} />
+        <CategoryHeader data={formattedCategories} />
       </div>
     </div>
   );

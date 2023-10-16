@@ -14,11 +14,11 @@ import {
 } from "@/components/categoryColumns";
 import { ApiList } from "@/components/apiList";
 
-interface CategoriesHeaderProps {
+interface CategoryHeaderProps {
   data: CategoryColumnType[];
 }
 
-export const CategoriesHeader: React.FC<CategoriesHeaderProps> = ({ data }) => {
+export const CategoryHeader: React.FC<CategoryHeaderProps> = ({ data }) => {
   const params = useParams();
   const router = useRouter();
 
