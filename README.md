@@ -1,9 +1,9 @@
-# Ecommerce Frontend
+# Ecommerce Admin
 
 ## Overview
 
 This is a ecommerce frontend application.
-![Ecommerce Preview](./src/assets/preview.png)
+![Ecommerce Admin Preview](./src/assets/preview.png)
 
 ## Technologies Used
 
